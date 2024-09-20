@@ -39,6 +39,7 @@ Example:
 
 from cardcontent import *
 from cardtype import *
+from fontsize import *
 import time
 
 svgTemplate = '''<?xml version='1.0' encoding='UTF-8' standalone='no'?><svg xmlns:dc='http://purl.org/dc/elements/1.1/'
@@ -181,12 +182,6 @@ class PageLayouter:
       headerStyle = "style='fill:%s;stroke:none;stroke-width:0;'" % headerColor[cardType]
       scaleCommon = self.height / 69
       scaleWidth = self.width / 104 / scaleCommon
-      fontSize = {
-        'de': '128px',
-#        'de': '104px',
-        'en': '128px',
-        'es': '120px',
-      }
       content = typelabel % ( 1020 * scaleWidth, 1020 * scaleWidth, fontSize[self.lang], cardTypeTitle[self.lang][card['type']].upper() )
       if 'event' == cardType:
         smileyBase = "<circle cx='150' cy='100' r='80' style='fill:none;stroke:#fff;stroke-width:14;'/><circle cx='122' cy='70' r='12' style='fill:#fff;stroke:none;stroke-width:0;'/><circle cx='178' cy='70' r='12' style='fill:#fff;stroke:none;stroke-width:0;'/>"

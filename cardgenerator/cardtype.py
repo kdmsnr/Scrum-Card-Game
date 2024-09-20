@@ -55,4 +55,10 @@ cardTypeTitle = {
     'problem' : 'problema',
     'solution' : 'solución',
   },
+  'ja': {
+    'story' : 'ストーリー',
+    'event' : 'イベント',
+    'problem' : '問題',
+    'solution' : '解決策',
+  },
 }

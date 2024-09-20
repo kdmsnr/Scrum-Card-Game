@@ -3,5 +3,5 @@ fontSize = {
     # 'de': '104px',
     'en': '128px',
     'es': '120px',
-    'ja': '100px',
+    'ja': '128px',
 }

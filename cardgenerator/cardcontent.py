@@ -31,6 +31,9 @@
 #     corrections, and new texts).
 #
 
+import os
+import importlib
+
 cardcontent = [
   {
     'type' : 'story',
@@ -118,6 +121,7 @@ cardcontent = [
   },
   {
     'type' : 'event',
+    'event_id' : 1,
     'smiley' : ':-)',
     'en_title' : 'GOOD RECRUIT',
     'en' : 'New recruit is really good. You may roll 2 dice now and add these to the last roll.',
@@ -126,6 +130,7 @@ cardcontent = [
   },
   {
     'type' : 'event',
+    'event_id' : 2,
     'smiley' : ':-)',
     'en_title' : 'HOME OFFICE',
     'en' : 'You have worked well at home. Add 2 points to the last roll.',
@@ -134,6 +139,7 @@ cardcontent = [
   },
   {
     'type' : 'event',
+    'event_id' : 3,
     'smiley' : ':-)',
     'en_title' : 'BROWN BAG MEETING',
     'en' : 'Discussion during lunch time led to a splendid idea. Work on the current card is instantly resolved.',
@@ -142,6 +148,7 @@ cardcontent = [
   },
   {
     'type' : 'event',
+    'event_id' : 4,
     'smiley' : ':-)',
     'en_title' : 'GURU',
     'en' : 'A guru visited your office. You may immediately remove one problem card from the current story.',
@@ -150,6 +157,7 @@ cardcontent = [
   },
   {
     'type' : 'event',
+    'event_id' : 5,
     'smiley' : ':-)',
     'en_title' : 'DOING WELL',
     'en' : 'Things are going incredibly well. Add 4 to the last roll.',
@@ -158,6 +166,7 @@ cardcontent = [
   },
   {
     'type' : 'event',
+    'event_id' : 6,
     'smiley' : ':-)',
     'en_title' : 'VISIBLE EFFORT',
     'en' : 'The boss acknowledges your effort. You may add 3 points to the previous result.',
@@ -166,6 +175,7 @@ cardcontent = [
   },
   {
     'type' : 'event',
+    'event_id' : 7,
     'smiley' : ':-)',
     'en_title' : 'FAIRY',
     'en' : 'A fairy helped you. A card in progress is instantly finished.',
@@ -174,6 +184,7 @@ cardcontent = [
   },
   {
     'type' : 'event',
+    'event_id' : 8,
     'smiley' : ':-(',
     'en_title' : 'SICK AT HOME',
     'en' : 'You are sick at home. Skip your next turn.',
@@ -182,6 +193,7 @@ cardcontent = [
   },
   {
     'type' : 'event',
+    'event_id' : 9,
     'smiley' : ':-(',
     'en_title' : 'HEALTH PROBLEM',
     'en' : 'You have caught a cold. Skip your next turn.',
@@ -190,6 +202,7 @@ cardcontent = [
   },
   {
     'type' : 'event',
+    'event_id' : 10,
     'smiley' : ':-(',
     'en_title' : 'HARD DRIVE CRASHED',
     'en' : 'Hard drive crashed. Remove all progress from a card in progress.',
@@ -198,6 +211,7 @@ cardcontent = [
   },
   {
     'type' : 'event',
+    'event_id' : 11,
     'smiley' : ':-(',
     'en_title' : 'EMERGENCY CALL',
     'en' : 'An emergency call informs about an incident in the office. Everyone skips next turn.',
@@ -206,6 +220,7 @@ cardcontent = [
   },
   {
     'type' : 'event',
+    'event_id' : 12,
     'smiley' : ':-(',
     'en_title' : 'BUSINESS TRIP',
     'en' : 'You are sent on a business trip. Skip next turn.',
@@ -214,6 +229,7 @@ cardcontent = [
   },
   {
     'type' : 'event',
+    'event_id' : 13,
     'smiley' : ':-(',
     'en_title' : 'REQUIREMENTS CHANGE',
     'en' : 'PO decided to make changes to the project. So this story will take 4 hours more.',
@@ -222,6 +238,7 @@ cardcontent = [
   },
   {
     'type' : 'event',
+    'event_id' : 14,
     'smiley' : ':-(',
     'en_title' : 'EXTRA COST',
     'en' : 'Your work costs more than planned. Add 6 hours to the story estimation.',
@@ -230,6 +247,7 @@ cardcontent = [
   },
   {
     'type' : 'event',
+    'event_id' : 15,
     'smiley' : ':-|',
     'en_title' : 'BIRTHDAY',
     'en' : "It is your birthday today. Subtract 1 point from everybody's dice roll today.",
@@ -238,6 +256,7 @@ cardcontent = [
   },
   {
     'type' : 'event',
+    'event_id' : 16,
     'smiley' : ':-|',
     'en_title' : 'OVERTIME',
     'en' : 'You have worked overtime. Draw another card and follow its instruction.',
@@ -246,6 +265,7 @@ cardcontent = [
   },
   {
     'type' : 'solution',
+    'solution_id' : 1,
     'en_title' : 'GET SOME REST',
     'en' : 'Get some rest to refresh your mind.',
     'de_title' : 'MACH MAL PAUSE', 
@@ -253,6 +273,7 @@ cardcontent = [
   },
   {
     'type' : 'solution',
+    'solution_id' : 2,
     'en_title' : 'CONSULTING',
     'en' : 'Involve a skilled team member from other team to consult you.',
     'de_title' : 'BERATUNG', 
@@ -260,6 +281,7 @@ cardcontent = [
   },
   {
     'type' : 'solution',
+    'solution_id' : 3,
     'en_title' : 'EXTRA MEMBER',
     'en' : 'Add another member to the team. Throw dice once at any moment you want.',
     'de_title' : 'TEAMZUWACHS', 
@@ -267,6 +289,7 @@ cardcontent = [
   },
   {
     'type' : 'solution',
+    'solution_id' : 4,
     'en_title' : 'COMMUNICATION',
     'en' : 'Enhance communication.',
     'de_title' : 'KOMMUNIKATION', 
@@ -274,6 +297,7 @@ cardcontent = [
   },
   {
     'type' : 'solution',
+    'solution_id' : 5,
     'en_title' : 'SPECIALIST',
     'en' : 'Engage a specialist.',
     'de_title' : 'SPEZIALIST', 
@@ -281,6 +305,7 @@ cardcontent = [
   },
   {
     'type' : 'solution',
+    'solution_id' : 6,
     'en_title' : 'AUTOMATED TESTING',
     'en' : 'Introduce automated testing.',
     'de_title' : 'TESTAUTOMATISIERUNG', 
@@ -288,6 +313,7 @@ cardcontent = [
   },
   {
     'type' : 'solution',
+    'solution_id' : 7,
     'en_title' : 'TL-SUPPORT',
     'en' : 'Your team lead is ready to take a part of the work.',
     'de_title' : 'TL-UNTERSTÜTZUNG', 
@@ -295,6 +321,7 @@ cardcontent = [
   },
   {
     'type' : 'solution',
+    'solution_id' : 8,
     'en_title' : 'SHARE GOALS',
     'en' : 'Get the team together and share the key project goals.',
     'de_title' : 'VISUALISIERUNG DER ZIELE', 
@@ -302,6 +329,7 @@ cardcontent = [
   },
   {
     'type' : 'solution',
+    'solution_id' : 9,
     'en_title' : 'DEEP INSIGHT',
     'en' : 'Apply your deep domain knowledge.',
     'de_title' : 'TIEFENEINBLICK', 
@@ -309,6 +337,7 @@ cardcontent = [
   },
   {
     'type' : 'solution',
+    'solution_id' : 10,
     'en_title' : 'LESSONS LEARNT',
     'en' : 'Apply experience destilled from former retrospectives.',
     'de_title' : 'GEWONNENE ERKENNTNISSE', 
@@ -316,6 +345,7 @@ cardcontent = [
   },
   {
     'type' : 'solution',
+    'solution_id' : 11,
     'en_title' : 'COLLABORATION',
     'en' : 'Get the team together with PO and exchange information.',
     'de_title' : 'KOLLABORATION', 
@@ -323,6 +353,7 @@ cardcontent = [
   },
   {
     'type' : 'solution',
+    'solution_id' : 12,
     'en_title' : 'PAIR PROGRAMMING',
     'en' : 'Apply pair programming.',
     'de_title' : 'PAIR-PROGRAMMING', 
@@ -330,6 +361,7 @@ cardcontent = [
   },
   {
     'type' : 'solution',
+    'solution_id' : 13,
     'en_title' : 'ENHANCE SKILLS',
     'en' : 'Get training for raising the level of your skill.',
     'de_title' : 'WISSENSTRANSFER', 
@@ -337,6 +369,7 @@ cardcontent = [
   },
   {
     'type' : 'problem',
+    'problem_id' : 1,
     'en_title' : 'TECHNICAL OBSTACLE',
     'en' : 'Your work is blocked by a technical obstacle.',
     'de_title' : 'TECHNISCHES HINDERNIS', 
@@ -344,6 +377,7 @@ cardcontent = [
   },
   {
     'type' : 'problem',
+    'problem_id' : 2,
     'en_title' : 'BAD QUALITY',
     'en' : 'You cannot finish the story because the quality is inadequate.',
     'de_title' : 'NIEDRIGE CODEQUALITÄT', 
@@ -351,6 +385,7 @@ cardcontent = [
   },
   {
     'type' : 'problem',
+    'problem_id' : 3,
     'en_title' : 'UNCLEAR SPEC',
     'en' : 'The specification is not clear enough for you.',
     'de_title' : 'UNKLARE SPEZIFIKATION', 
@@ -358,6 +393,7 @@ cardcontent = [
   },
   {
     'type' : 'problem',
+    'problem_id' : 4,
     'en_title' : 'UNSATISFIED USERS',
     'en' : 'You feel that users are not satisfied.',
     'de_title' : 'UNZUFRIEDENER KUNDE', 
@@ -365,6 +401,7 @@ cardcontent = [
   },
   {
     'type' : 'problem',
+    'problem_id' : 5,
     'en_title' : 'DATA IS MISSING',
     'en' : "You can't work with the story, as you don't have important data from PO.",
     'de_title' : 'FEHLENDE INFORMATION', 
@@ -372,6 +409,7 @@ cardcontent = [
   },
   {
     'type' : 'problem',
+    'problem_id' : 6,
     'en_title' : 'BAD COMMUNICATION',
     'en' : "You cannot communicate well with other team members. They just don't get you.",
     'de_title' : 'SCHLECHTE KOMMUNIKATION', 
@@ -379,6 +417,7 @@ cardcontent = [
   },
   {
     'type' : 'problem',
+    'problem_id' : 7,
     'en_title' : 'POOR SKILLS',
     'en' : 'You are not skilled enough to finish the work.',
     'de_title' : 'DÜRFTIGES WISSEN', 
@@ -386,6 +425,7 @@ cardcontent = [
   },
   {
     'type' : 'problem',
+    'problem_id' : 8,
     'en_title' : 'UNSTABLE SYSTEM',
     'en' : 'System is very unstable. You have to test with major difficulties.',
     'de_title' : 'INSTABILES SYSTEM', 
@@ -393,6 +433,7 @@ cardcontent = [
   },
   {
     'type' : 'problem',
+    'problem_id' : 9,
     'en_title' : 'BAD MOOD',
     'en' : 'Today you are upset. So you are too lazy to work.',
     'de_title' : 'GENERVT', 
@@ -400,9 +441,40 @@ cardcontent = [
   },
   {
     'type' : 'problem',
+    'problem_id' : 10,
     'en_title' : 'INTEGRATION ISSUES',
     'en' : "Your colleague provided you with the component, which is different from what you expected. Your work is blocked.",
     'de_title' : 'INTEGRATIONSPROBLEM', 
     'de' : 'Eine Zulieferung eines Kollegen ist anders, als Ihr es erwartet habt. Das blockiert die Arbeit.', 
   },
 ]
+
+def load_language_content(lang):
+    try:
+        language_module = importlib.import_module(f'cardcontent_{lang}')
+        return language_module.cardcontent
+    except ModuleNotFoundError:
+        print(f"{lang} is not found.")
+        return []
+
+def merge_language_content(language_content):
+    for lang_card in language_content:
+        id_keys = ['story_id', 'event_id', 'problem_id', 'solution_id']
+        id_key = next((key for key in id_keys if key in lang_card), None)
+        if not id_key:
+            continue
+
+        for i, card in enumerate(cardcontent):
+            if card.get(id_key) == lang_card[id_key]:
+                cardcontent[i].update(lang_card)
+                break
+
+def load_all_languages():
+    for filename in os.listdir(os.path.dirname(__file__)):
+        if filename.startswith("cardcontent_") and filename.endswith(".py"):
+            lang = filename[len("cardcontent_"):-len(".py")]
+            language_content = load_language_content(lang)
+            merge_language_content(language_content)
+
+load_all_languages()
+

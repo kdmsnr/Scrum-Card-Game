@@ -52,7 +52,7 @@ class CardGenerator(Exception):
     for pl in pagelayout:
       w = pl['width']
       h = pl['height']
-      for lang in [ 'de', 'en' ]:
+      for lang in [ 'de', 'en', 'ja' ]:
         index = 0
         fileIndex = 0
         amountCards = len(cardcontent)
